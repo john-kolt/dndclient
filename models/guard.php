@@ -15,13 +15,20 @@ class tGuard
   {
     $this->db = $db;
     $this->mailer = $mailer;
-    $this->logged = isset($_SESSION['dnd_user_login']);
+    $this->logged = isset($_SESSION['dnd_user_name']);
     if($this->logged)
     {
-      $this->login = $_SESSION['dnd_user_login'];
+      $this->id = $_SESSION['dnd_user_id'];
+      $this->name = $_SESSION['dnd_user_name'];
       $this->email = $_SESSION['dnd_user_email'];
       $this->games = $_SESSION['dnd_user_games'];
-      $this->characters = $_SESSION['dnd_user_characters'];
+      $this->data = array(
+        'id'    => $_SESSION['dnd_user_id'],
+        'name'  => $_SESSION['dnd_user_name'],
+        'email' => $_SESSION['dnd_user_email'],
+        'games' => $_SESSION['dnd_user_games']
+        );
+      //$this->characters = $_SESSION['dnd_user_characters'];
       //$this->permissions = $_SESSION['dnd_user_permissions'];
     }
   }
@@ -50,10 +57,10 @@ class tGuard
         if($user['password']==md5($password))
         {
           $_SESSION['dnd_user_id'] = $user['id'];
-          $_SESSION['dnd_user_login'] = $user['login'];
+          $_SESSION['dnd_user_name'] = $user['login'];
           $_SESSION['dnd_user_email'] = $user['email'];
           $_SESSION['dnd_user_games'] = $this->db->getUserGames($user['id']);
-          $_SESSION['dnd_user_characters'] = $this->db->getUserCharacters($user['id']);
+          //$_SESSION['dnd_user_characters'] = $this->db->getUserCharacters($user['id']);
           return false;
         }
       return 'Bad login or password';
@@ -80,10 +87,10 @@ class tGuard
         $user = $this->db->getUserData($login);
         
         $_SESSION['dnd_user_id'] = $user['id'];
-        $_SESSION['dnd_user_login'] = $user['login'];
+        $_SESSION['dnd_user_name'] = $user['login'];
         $_SESSION['dnd_user_email'] = $user['email'];
         $_SESSION['dnd_user_games'] = $this->db->getUserGames($user['id']);
-        $_SESSION['dnd_user_characters'] = $this->db->getUserCharacters($user['id']);
+        //$_SESSION['dnd_user_characters'] = $this->db->getUserCharacters($user['id']);
         
         if(!$this->mailer->send("DndClient",
         $login.", welcome!<br>You are registered with email ".$email, $email))
@@ -135,4 +142,54 @@ class tGuard
     }
     else return '';
   }
+
+
+
+
+// Массив персонажей, владельцем которых является юзер
+  public function getCharacters()
+  {
+    if(!isset($this->characters))
+      return $this->characters = $this->db_getCharacters();
+    else
+      return $this->characters;
+  }
+  private function db_getCharacters()
+  {
+    if (!$this->db->connected)
+      $this->db->connect();
+    $query = mysql_query("SELECT id,name,gid,approved,dead,modified FROM `Characters` ".
+      "WHERE uid = '".$this->data['id']."'");
+    if(!$query)
+      return false;
+    $result = array();
+    while($row = mysql_fetch_assoc($query))
+      $result[] = $row;
+    return $result;
+  }
+
+
+// Массив игр, владельцем которых является юзер
+  public function getGames()
+  {
+    if(!isset($this->games))
+      return $this->games = $this->db_getGames();
+    else
+      return $this->games;
+  }
+  public function db_getGames() # Table: Games
+  {
+    if (!$this->db->connected)
+      $this->db->connect();
+    $query = mysql_query("SELECT id,name,playing,description FROM `Games` ".
+      "WHERE uid = '".$this->data['id']."'");
+    if(!$query)
+      return false;
+    $result = array();
+    while($row = mysql_fetch_assoc($query))
+      $result[] = $row;
+    return $result;
+  }
+
+  
 }

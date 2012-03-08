@@ -86,20 +86,29 @@ class tDataBase
     else
       return $user;
   }
-
-  public function getUserCharacters($uid)# Table: Characters
+  public function getUserDataFromId($uid) # Table: Users
   {
     if (!$this->connected)
       $this->connect();
-    // Массив персонажей, принадлежащих юзеру
-    $query = mysql_query("SELECT id,gid,name,dead,approved,modified FROM `Characters` ".
-      "WHERE uid = '".$uid."'");
+    // Массив данных о юзере
+    $query = mysql_query("SELECT id,login,email,password FROM `Users` ".
+      "WHERE id = '".$uid."'");
+    if(!$query || !$user = mysql_fetch_assoc($query))
+      return false;
+    else
+      return $user;
+  }
+
+  public function getGame($gid) # Table: Games
+  {
+    if (!$this->connected)
+      $this->connect();
+    // Данные игры
+    $query = mysql_query("SELECT id,uid,name,playing,tutorial,description FROM `Games` ".
+      "WHERE id = '".$gid."'");
     if(!$query)
       return false;
-    $result = array();
-    while($row = mysql_fetch_assoc($query))
-      $result[] = $row;
-    return $result;
+    return mysql_fetch_assoc($query);
   }
 
   public function getUserGames($uid) # Table: Games
@@ -116,6 +125,22 @@ class tDataBase
       $result[] = $row;
     return $result;
   }
+
+  public function getUserCharacters($uid) # Table: Characters
+  {
+    if (!$this->connected)
+      $this->connect();
+    // Массив игр, владельцем которых является юзер
+    $query = mysql_query("SELECT id,name,approved,dead,modified FROM `Characters` ".
+      "WHERE uid = '".$uid."'");
+    if(!$query)
+      return false;
+    $result = array();
+    while($row = mysql_fetch_assoc($query))
+      $result[] = $row;
+    return $result;
+  }
+  
 
 // //// Функции ГМа
 // Персонажи
@@ -139,6 +164,7 @@ class tDataBase
     # Table: Games
     {
         // Добавление новой игры
+        return 'Function not finished';
     }
     public function delGame($game)
     # Table: Games

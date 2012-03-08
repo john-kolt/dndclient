@@ -7,6 +7,14 @@ require_once('models/db.php');
 require_once('models/view.php');
 require_once('models/guard.php');
 
+function find($array, $id)
+{
+  foreach($array as $item)
+    if($item['id'] == $id)
+      return $item;
+  return false;
+}
+
 class tMailer
 {
   public function __construct($mailer, $address)
@@ -30,10 +38,13 @@ class tDndClient
     $this->DEBUG = '';
     
     $this->actions = explode('/',$_SERVER['REQUEST_URI']);
+    
     $this->view = new tView();
     $this->mailer = new tMailer('winzo','winzo.delirium@gmail.com');
     $this->db = new tDataBase('localhost','dnd','root','wFuYJrMq');
     $this->user = new tGuard($this->db, $this->mailer);
+    $this->view->db_user = $this->user->data;
+    
     $this->view->time_start = $time_start;
     $this->view->logged = $this->user->logged;
     if(isset($_SESSION['dnd_error']))
@@ -111,8 +122,8 @@ class tDndClient
         $this->view->header = 'User';
         $this->view->body = '';
         $this->view->db_users = $this->db->getTable('Users');
-        $this->view->db_games = $this->user->games;
-        $this->view->db_characters = $this->user->characters;
+        $this->view->db_games = $this->user->getGames();
+        $this->view->db_characters = $this->user->getCharacters();
         $this->view->setBody('pages/user');
       break;
       case 'login':
@@ -151,17 +162,70 @@ class tDndClient
   public function gamesAction()
   {
     $this->mustBeAuthorized();
-    $this->view->title = 'Games';
-    $this->view->header = 'Games';
-    $this->view->body = 'Games list';
+    if(!isset($this->actions[1]))
+      $this->actions[1]='';
+    switch($this->actions[1])
+    {
+      case '':
+        $this->view->title = 'Games';
+        $this->view->header = 'Games';
+        $this->view->db_games = $this->db->getTable('Games');
+        $this->view->setBody('pages/games');
+      break;
+      case 'new':
+        $this->view->title = 'Creating new game';
+        $this->view->header = 'Creating new game';
+        $this->view->db_games = $this->db->getTable('Games');
+        $this->view->setBody('pages/game_new');
+        if($_POST)
+        {
+          if(!$this->view->addError($this->db->addGame($_POST['name'], $this->user->data['id'], $_POST['tutorial'], $_POST['description'])))
+            $this->location('/');
+        }
+      break;
+      default:
+        if(is_numeric($this->actions[1]))
+        {
+          $this->view->db_game = find($this->user->games, $this->actions[1]);
+          
+          if(!$this->view->db_game)
+            $this->view->db_game = $this->getGame($this->actions[1]);
+          else
+            $this->view->db_owner = $this->user->data;
+          if(!$this->view->db_owner)
+            $this->view->db_owner = $this->db->getUserDataFromId($this->view->db_game['uid']);
+          
+          if(!$this->view->db_game)
+            $this->return404();
+          
+          $this->view->title = $this->view->db_game['name'];
+          $this->view->header = $this->view->db_game['name'];
+          $this->view->setBody('pages/game');
+        }
+        else
+          $this->return404();
+      break;
+    }
   }
 
   public function charactersAction()
   {
     $this->mustBeAuthorized();
-    $this->view->title = 'Character';
-    $this->view->header = 'Character';
-    $this->view->body = 'Character list';
+    if(!isset($this->actions[1]))
+      $this->actions[1]='';
+    switch($this->actions[1])
+    {
+      case '':
+        $this->view->title = 'Characters';
+        $this->view->header = 'Characters';
+        $this->view->db_games = $this->user->games;
+        $this->view->db_characters = $this->db->getTable('Characters');
+        $this->view->setBody('pages/characters');
+      break;
+      default:
+        $this->return404();
+      break;
+    }
   }
 }
 

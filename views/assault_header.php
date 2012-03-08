@@ -37,7 +37,7 @@
         else
             {echo $nav_this."characters$nav_this_end";}
 
-        echo "You logged as ".$_SESSION['dnd_login'];
+        echo "You logged as ".$this->db_user['name'];
             
       else:
       

@@ -27,9 +27,8 @@ a:active
 }
 a.action:link, a.action:visited
 {
-  font-size             : 100%;
   font-weight           : normal;
-  color                 : #DEDEDE;
+  color                 : #EFEFEF;
   text-decoration       : none;
 }
 a.action:hover
@@ -41,14 +40,14 @@ a.action:active
 {
   color                 : #000000;
 }
-a.users, a.users-add
+a.users, a.users-add, a.add
 {
   background            : url(/public/icons/users.png);
   background-color      : #222222;
   background-repeat     : no-repeat;
   padding               : 6px;
   padding-left          : 27px;
-  height                : 13px;
+  height                : 15px;
   display               : block;
   text-decoration       : none;
   border                : 0px dotted black;
@@ -68,6 +67,16 @@ a.users-add:hover
   background            : url(/public/icons/users-add-hover.png);
   background-repeat     : no-repeat;
 }
+a.add
+{
+  background            : url(/public/icons/add.png);
+  background-repeat     : no-repeat;
+}
+a.add:hover
+{
+  background            : url(/public/icons/add-hover.png);
+  background-repeat     : no-repeat;
+}
 td.button
 {
   padding               : 0px;
@@ -84,7 +93,6 @@ div.footer, footer
 table.simple
 {
   width                 : 100%;
-  font-size             : 10pt;
   background            : transparent;
   border                : 0px;
   padding               : 0px;
@@ -94,6 +102,7 @@ table.simple td
   padding               : 1px;
   padding-right         : 3px;
   border                : 0px;
+  vertical-align        : top;
 }
 table.simple tr {
   background            : transparent;
@@ -114,7 +123,6 @@ table.list {
 table.list td {
   padding               : 1px;
   padding-right         : 3px;
-  font-size             : 10pt;
   color                 : #ABABAB;
   border                : 1px dashed #222222;
 }
@@ -187,7 +195,6 @@ span.microtime
 }
 div.notice,div.success,div.error
 {
-  font-size             : 10pt;
   background            : #BABA1A;
   color                 : #FFFFFF;
   border                : 1px dotted black;
@@ -210,10 +217,9 @@ article
   margin-top            : 0px;
   margin-bottom         : 0px;
 }
-input,button
+input,button,textarea
 {
   font-family           : Terminus, Monospace;
-  font-size             : 10pt;
   background            : #333333;
   color                 : #ABABAB;
   border                : 1px dotted #222222;
