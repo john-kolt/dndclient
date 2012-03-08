@@ -1,0 +1,227 @@
+*
+{
+  text-shadow           : #000000 1px 1px 1px;
+  font-family           : Terminus, Monospace;
+  font-size             : 100%;
+}
+
+body,html
+{
+  background            : #353535;
+  color                 : #ABABAB;
+  padding               : 2px;
+}
+a:link, a:visited, input:hover, button:hover
+{
+  font-weight           : normal;
+  color                 : #FFFFFF;
+}
+a:hover
+{
+  font-weight           : normal;
+  color                 : #ACACAC;
+}
+a:active
+{
+  color                 : #000000;
+}
+a.action:link, a.action:visited
+{
+  font-size             : 100%;
+  font-weight           : normal;
+  color                 : #DEDEDE;
+  text-decoration       : none;
+}
+a.action:hover
+{
+  font-weight           : normal;
+  color                 : #ACACAC;
+}
+a.action:active
+{
+  color                 : #000000;
+}
+a.users, a.users-add
+{
+  background            : url(/public/icons/users.png);
+  background-color      : #222222;
+  background-repeat     : no-repeat;
+  padding               : 6px;
+  padding-left          : 27px;
+  height                : 13px;
+  display               : block;
+  text-decoration       : none;
+  border                : 0px dotted black;
+}
+a.users-add
+{
+  background            : url(/public/icons/users-add.png);
+  background-repeat     : no-repeat;
+}
+a.users:hover
+{
+  background            : url(/public/icons/users-hover.png);
+  background-repeat     : no-repeat;
+}
+a.users-add:hover
+{
+  background            : url(/public/icons/users-add-hover.png);
+  background-repeat     : no-repeat;
+}
+td.button
+{
+  padding               : 0px;
+  border                : 1px dashed #222222;
+}
+div.header, header,
+div.footer, footer
+{
+  background            : #232323;
+  padding               : 3px;
+  text-align            : left;
+  border                : 1px dotted black;
+}
+table.simple
+{
+  width                 : 100%;
+  font-size             : 10pt;
+  background            : transparent;
+  border                : 0px;
+  padding               : 0px;
+}
+table.simple td
+{
+  padding               : 1px;
+  padding-right         : 3px;
+  border                : 0px;
+}
+table.simple tr {
+  background            : transparent;
+}
+table.simple tr:nth-child(odd) {
+  background            : transparent;
+}
+table.simple tr:hover {
+  background            : transparent;
+}
+table.list {
+  width                 : 100%;
+  background            : #353535;
+  color                 : #ABABAB;
+  border                : 0px dotted black;
+  padding               : 0px;
+}
+table.list td {
+  padding               : 1px;
+  padding-right         : 3px;
+  font-size             : 10pt;
+  color                 : #ABABAB;
+  border                : 1px dashed #222222;
+}
+table.list th {
+  background            : #232323;
+  border                : 1px dotted black;
+}
+table.list tr {
+  background            : #222222;
+  border                : 1px solid #353535;
+}
+table.list tr:nth-child(odd){
+  background            : #1A1A1A;
+}
+table.list tr:hover{
+  background            : #2A2A2A;
+}
+table.list tr:hover td {
+  border                : 1px solid #353535;
+}
+nav
+{
+  padding               : 1px;
+  margin                : 10px;
+  margin-top            : 0px;
+  display               : block;
+  border                : 0px;
+}
+nav a, nav a:link, nav a:visited
+{
+  padding               : 4px;
+  margin-right          : 10px;
+  text-decoration       : none;
+  font-weight           : normal;
+  color                 : #FFFFFF;
+   -webkit-transition-property: color;
+      -moz-transition-property: color;
+        -o-transition-property: color;
+       -ms-transition-property: color;
+           transition-property: color;
+   -webkit-transition-duration: 0.5s;
+      -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+       -ms-transition-duration: 0.5s;
+           transition-duration: 0.5s;
+}
+nav a:hover
+{
+  font-weight           : normal;
+  color                 : #ACACAC;
+  position              : relative;
+  top                   : 0px;
+  left                  : 0px;
+}
+nav .this
+{
+  margin-right          : 10px;
+  background            : #101010;
+  padding               : 4px;
+  text-align            : left;
+  text-shadow           : #000000 1px 1px 1px;
+  border                : 1px dotted black;
+  color                 : #FFFFFF;
+  font-weight           : bold;
+}
+span.microtime
+{
+  font-size             : 75%;
+  display               : block;
+}
+div.notice,div.success,div.error
+{
+  font-size             : 10pt;
+  background            : #BABA1A;
+  color                 : #FFFFFF;
+  border                : 1px dotted black;
+  padding               : 2px;
+  margin                : 10px;
+}
+div.success
+{
+  background            : #1ACA1A;
+}
+div.error
+{
+  background            : #CA1A1A;
+}
+article
+{
+  padding               : 3px;
+  padding-left          : 0px;
+  padding-right         : 0px;
+  margin-top            : 0px;
+  margin-bottom         : 0px;
+}
+input,button
+{
+  font-family           : Terminus, Monospace;
+  font-size             : 10pt;
+  background            : #333333;
+  color                 : #ABABAB;
+  border                : 1px dotted #222222;
+  padding               : 2px;
+}
+label
+{
+  color                 : #ABABAB;
+  border                : 0px;
+  padding               : 0px;
+}

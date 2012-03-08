@@ -1,0 +1,4 @@
+The 404 or Not Found error message is a HTTP standard response code indicating that the client was able to communicate with the server, but the server could not find what was requested.<br><br>
+The web site hosting server will typically generate "404 - Not Found" web page, when users attempts to follow a broken or dead link, hence the 404 error is one of the most recognizable errors users can find on the web.<br><br>
+A 404 error should not be confused with "server not found" or similar errors, in which a connection to the destination server could not be made at all. A 404 error indicates that the requested resource may be available again in the future; however, the fact does not guarantee the same content.<br><br>
+More on <a href="http://en.wikipedia.org/wiki/HTTP_404" target="_blank">wikipedia.org</a>

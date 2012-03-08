@@ -1,0 +1,124 @@
+body, html
+{
+  font-family:        Verdana,Sans;
+  font-size:          10pt;
+  color:              #adadad;
+  background-color:   black;
+  padding:            0px;
+  margin:             0px;
+  min-height:         100%;
+  height:             100%;
+  margin:             0px;
+  padding:            0px;
+  position:           relative;
+}
+
+nav
+{
+  background-color:   #111111;
+  padding:            1px;
+  margin:             10px;
+  margin-top:         0px;
+  display:            block;
+  border:             0px dashed gray;
+}
+nav a
+{
+  padding:            5px;
+  padding-bottom:     1px;
+  #border-radius:      0px 0px 5px 5px;
+  text-decoration:    none;
+  font-weight:        normal;
+  color:              #adadad;
+}
+nav a:hover
+{
+  #border-radius:      20px;
+  background-color:   #2b2b2b;
+  text-decoration:    none;
+  font-weight:        normal;
+  border-bottom:      0px dashed gray;
+  color:              white;
+}
+nav .this
+{
+  color:              white;
+  border-radius:      5px;
+  padding:            5px;
+  padding-bottom:     2px;
+  background-color:   #333333;
+  font-weight:        bold;
+  border:             0px dashed gray;
+}
+.microtime
+{
+  font-family:        Monospace;
+  font-size:          8pt;
+  display:            block;
+}
+
+header
+{
+  color:              white;
+  font-weight:        bold;
+  border-radius:      5px 5px 0px 0px;
+  background-color:   #333333;
+  padding:            2px;
+  margin:             50px;
+  margin-bottom:      0px;
+  margin-top:         10px;
+  display:            block;
+}
+.error
+{
+  border-radius:      5px 5px 5px 5px;
+  color:              red;
+  border:             1px dashed red;
+  background-color:   black;
+  padding:            2px;
+  margin:             30px;
+  display:            block;
+}
+.content
+{
+  display:            block;
+  position:           relative;
+  min-height:         100%;
+  #padding-bottom:     8em;
+  margin-bottom:      -4em;
+}
+.footer
+{
+  display:            block;
+  position:           relative;
+  height:             1em;
+}
+article
+{
+  position:           relative;
+  border-radius:      0px 0px 5px 5px;
+  background-color:   #111111;
+  padding:            2px;
+  margin:             50px;
+  margin-top:         0px;
+  display:            block;
+}
+footer
+{
+  border-radius:      5px;
+  background-color:   #111111;
+  padding:            2px;
+  margin:             50px;
+  margin-bottom:      0px;
+  margin-top:         -4em;
+  text-align:         center;
+  display:            block;
+}
+label
+{
+  width:              99%;
+}
+input, submit
+{
+  width:              99%;
+}
